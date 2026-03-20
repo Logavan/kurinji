@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>குறிஞ்சி டாக்ஸி நாமக்கல் | Kurinji Taxi Namakkal</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Alpine.js - Lightweight (~15KB) reactive framework -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface": "#fcf9f8",
+              "surface-tint": "#785900",
+              "on-secondary-fixed-variant": "#474746",
+              "on-error-container": "#93000a",
+              "primary": "#785900",
+              "on-tertiary-fixed-variant": "#004e5a",
+              "error": "#ba1a1a",
+              "surface-container-lowest": "#ffffff",
+              "primary-container": "#ffc107",
+              "on-tertiary-fixed": "#001f25",
+              "on-background": "#1c1b1b",
+              "on-secondary-fixed": "#1b1c1c",
+              "on-surface": "#1c1b1b",
+              "secondary-fixed-dim": "#c8c6c5",
+              "error-container": "#ffdad6",
+              "outline-variant": "#d4c5ab",
+              "outline": "#827660",
+              "inverse-primary": "#fabd00",
+              "on-error": "#ffffff",
+              "inverse-on-surface": "#f3f0ef",
+              "primary-fixed-dim": "#fabd00",
+              "surface-container-high": "#ebe7e7",
+              "on-primary-fixed-variant": "#5b4300",
+              "on-primary-fixed-variant": "#5b4300",
+              "tertiary": "#006877",
+              "surface-container-highest": "#e5e2e1",
+              "surface-container": "#f0edec",
+              "on-tertiary-container": "#005e6c",
+              "on-primary-fixed": "#261a00",
+              "tertiary-fixed": "#a5eeff",
+              "on-secondary": "#ffffff",
+              "on-primary": "#ffffff",
+              "surface-bright": "#fcf9f8",
+              "surface-variant": "#e5e2e1",
+              "primary-fixed": "#ffdf9e",
+              "surface-container-low": "#f6f3f2",
+              "tertiary-container": "#00defd",
+              "secondary-fixed": "#e5e2e1",
+              "surface-dim": "#dcd9d9",
+              "background": "#fcf9f8",
+              "on-tertiary": "#ffffff",
+              "on-primary-container": "#6d5100",
+              "secondary-container": "#e2dfde",
+              "on-surface-variant": "#4f4632",
+              "secondary": "#5f5e5e",
+              "on-secondary-container": "#636262",
+              "inverse-surface": "#313030",
+              "tertiary-fixed-dim": "#00daf8"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .kinetic-gradient {
+            background: linear-gradient(135deg, #785900 0%, #FFC107 100%);
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #fcf9f8; color: #1c1b1b; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar with Alpine.js -->
+<header x-data="{ scrolled: false, mobileMenuOpen: false }" 
+        @scroll.window="scrolled = (window.pageYOffset > 50)"
+        :class="scrolled ? 'py-2 shadow-lg bg-white/90' : 'py-4 bg-white/70'"
+        class="fixed top-0 w-full z-50 backdrop-blur-xl transition-all duration-300">
+<div class="flex items-center justify-between px-6 max-w-7xl mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-500 text-3xl" data-icon="local_taxi">local_taxi</span>
+<span class="text-2xl font-black italic text-black tracking-tighter">குறிஞ்சி டாக்ஸி</span>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-black font-extrabold border-b-2 border-yellow-500 transition-colors" href="#">Home</a>
+<a class="text-gray-600 font-medium hover:text-yellow-600 transition-colors" href="#services">Services</a>
+<a class="text-gray-600 font-medium hover:text-yellow-600 transition-colors" href="#premium">Premium</a>
+<a class="text-gray-600 font-medium hover:text-yellow-600 transition-colors" href="#routes">Routes</a>
+<a class="text-gray-600 font-medium hover:text-yellow-600 transition-colors" href="#pricing">Pricing</a>
+<a class="text-gray-600 font-medium hover:text-yellow-600 transition-colors" href="#contact">Contact</a>
+</nav>
+<a href="tel:+919345691983" class="kinetic-gradient text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow-lg scale-100 active:scale-95 transition-transform hidden md:inline-flex">
+Call Now
+</a>
+<!-- Mobile Menu Button -->
+<button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden p-2">
+<span class="material-symbols-outlined text-3xl" x-text="mobileMenuOpen ? 'close' : 'menu'"></span>
+</button>
+</div>
+<!-- Mobile Menu -->
+<div x-show="mobileMenuOpen" 
+     x-transition:enter="transition ease-out duration-200"
+     x-transition:enter-start="opacity-0 -translate-y-4"
+     x-transition:enter-end="opacity-100 translate-y-0"
+     x-transition:leave="transition ease-in duration-150"
+     x-transition:leave-start="opacity-100 translate-y-0"
+     x-transition:leave-end="opacity-0 -translate-y-4"
+     class="md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-4 px-6">
+<nav class="flex flex-col gap-4">
+<a @click="mobileMenuOpen = false" class="text-black font-extrabold border-b-2 border-yellow-500" href="#">Home</a>
+<a @click="mobileMenuOpen = false" class="text-gray-600 font-medium" href="#services">Services</a>
+<a @click="mobileMenuOpen = false" class="text-gray-600 font-medium" href="#premium">Premium</a>
+<a @click="mobileMenuOpen = false" class="text-gray-600 font-medium" href="#routes">Routes</a>
+<a @click="mobileMenuOpen = false" class="text-gray-600 font-medium" href="#pricing">Pricing</a>
+<a @click="mobileMenuOpen = false" class="text-gray-600 font-medium" href="#contact">Contact</a>
+<a href="tel:+919345691983" class="kinetic-gradient text-white px-6 py-2.5 rounded-xl font-bold text-sm mt-2 text-center">
+                Call Now
+            </a>
+</nav>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[751px] flex items-center overflow-hidden px-6">
+<div class="absolute inset-0 z-0">
+<img alt="Namakkal Fort" class="w-full h-full object-cover brightness-50" data-alt="Namakkal Fort" src="namakkal fort.webp"/>
+<div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
+<div class="text-white space-y-6">
+<h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight">
+                        <span class="text-primary-container">நாமக்கல்</span> டாக்ஸி சேவை<br/>
+                        Taxi Service in <span class="text-primary-container">Namakkal</span>
+                    </h1>
+<p class="text-xl md:text-2xl text-white/90 font-medium max-w-lg">
+                        24/7 கால் டாக்ஸி | உள்ளூர் & வெளியூர் பயணம்<br/>
+                        24/7 Call Taxi | Local & Outstation Travel
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<a href="tel:+919345691983" class="kinetic-gradient text-white px-8 py-4 rounded-xl font-extrabold flex items-center gap-2 shadow-[0_12px_32px_rgba(120,89,0,0.3)] hover:brightness-110 transition-all">
+<span class="material-symbols-outlined" data-icon="phone_in_talk" style="font-variation-settings: 'FILL' 1;">phone_in_talk</span>
+                            Call Now
+                        </a>
+<a href="https://wa.me/919345691983" class="bg-[#25D366] text-white px-8 py-4 rounded-xl font-extrabold flex items-center gap-2 hover:brightness-110 transition-all">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+                            WhatsApp Booking
+                        </a>
+</div>
+</div>
+<!-- Booking Card with Alpine.js -->
+<div x-data="{ pickup: '', drop: '', vehicle: 'sedan', submitted: false }" class="bg-surface-container-lowest/95 backdrop-blur-md p-8 rounded-[2rem] shadow-2xl space-y-6 border border-white/20">
+<h3 class="text-2xl font-bold text-on-surface">Quick Booking<br/><span class="text-sm font-normal">விரைவு முன்பதிவு</span></h3>
+<template x-if="submitted">
+<div class="text-center py-8">
+<div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-green-600 text-4xl">check_circle</span>
+</div>
+<h4 class="text-xl font-bold text-green-600 mb-2">Booking Received!<br/><span class="text-sm font-normal">முன்பதிவு பெறப்பட்டது!</span></h4>
+<p class="text-on-surface-variant">We'll contact you shortly.<br/><span class="text-sm">நாங்கள் விரைவில் தொடர்பு கொள்ளுவோம்.</span></p>
+<button @click="submitted = false; pickup = ''; drop = ''" class="mt-4 text-primary font-bold hover:underline">Book Another</button>
+</div>
+</template>
+<template x-if="!submitted">
+<div class="space-y-4">
+<!-- Vehicle Selection -->
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 ml-1">Select Vehicle <span class="normal-case">வாகனத்தை தேர்ந்தெடுக்கவும்</span></label>
+<div class="flex gap-2">
+<button @click="vehicle = 'sedan'" :class="vehicle === 'sedan' ? 'bg-primary text-white' : 'bg-surface-container-high'" class="flex-1 py-2 px-3 rounded-lg font-medium text-sm transition-colors">Sedan</button>
+<button @click="vehicle = 'suv'" :class="vehicle === 'suv' ? 'bg-primary text-white' : 'bg-surface-container-high'" class="flex-1 py-2 px-3 rounded-lg font-medium text-sm transition-colors">SUV</button>
+</div>
+</div>
+<div class="relative">
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-1 ml-1">Pickup Location <span class="normal-case">ஏறும் இடம்</span></label>
+<div class="flex items-center bg-surface-container-high rounded-xl px-4 py-3" :class="pickup === '' && pickup.$invalid ? 'ring-2 ring-red-500' : ''">
+<span class="material-symbols-outlined text-primary mr-3" data-icon="my_location">my_location</span>
+<input x-model="pickup" class="bg-transparent border-none focus:ring-0 w-full font-medium text-on-surface" placeholder="Enter Pickup Point" type="text"/>
+</div>
+</div>
+<div class="relative">
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-1 ml-1">Drop Location <span class="normal-case">இறக்கும் இடம்</span></label>
+<div class="flex items-center bg-surface-container-high rounded-xl px-4 py-3">
+<span class="material-symbols-outlined text-tertiary mr-3" data-icon="location_on">location_on</span>
+<input x-model="drop" class="bg-transparent border-none focus:ring-0 w-full font-medium text-on-surface" placeholder="Enter Destination" type="text"/>
+</div>
+</div>
+</div>
+</template>
+<template x-if="!submitted">
+<button @click="if(pickup && drop) { submitted = true }" class="w-full py-4 bg-on-surface text-white rounded-xl font-bold text-lg hover:bg-black transition-colors">
+                        Book Kurinji Now <span class="block text-sm font-normal">குறிஞ்சி டாக்ஸியை முன்பதிவு செய்யுங்கள்</span>
+                    </button>
+</template>
+<p class="text-center text-sm text-on-surface-variant font-medium italic">Instant confirmation via SMS/WhatsApp<br/><span class="text-xs">SMS/WhatsApp மூலம் உடனடி உறுதிப்படுத்தல்</span></p>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-24 px-6 bg-surface" id="services">
+<div class="max-w-7xl mx-auto">
+<div class="mb-16">
+<span class="text-primary font-bold tracking-[0.2em] uppercase text-sm block mb-2">What we offer <span class="normal-case font-normal tracking-normal">நாங்கள் வழங்குவது</span></span>
+<h2 class="text-4xl md:text-5xl font-black text-on-surface">Our Premium Services<br/><span class="text-2xl md:text-3xl">எங்கள் சிறந்த சேவைகள்</span></h2>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<!-- Service 1 -->
+<div class="bg-surface-container-low p-10 rounded-[2.5rem] group hover:bg-surface-container-lowest transition-all duration-500">
+<div class="w-16 h-16 bg-primary-fixed rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-primary-fixed text-4xl" data-icon="hail">hail</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Local Call Taxi <span class="block text-lg font-normal">உள்ளூர் கால் டாக்ஸி</span></h3>
+<p class="text-on-surface-variant leading-relaxed">Quick urban rides across Namakkal. Available 24/7 with a 10-minute arrival promise.<br/><span class="text-sm">நாமக்கல் முழுவதும் விரைவான பயணம். 24/7 கிடைக்கிறது. 10 நிமிடத்தில் வருகிறோம்.</span></p>
+<div class="mt-8 flex items-center text-primary font-bold">
+                            Learn more <span class="material-symbols-outlined ml-2" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Service 2 -->
+<div class="bg-surface-container-low p-10 rounded-[2.5rem] group hover:bg-surface-container-lowest transition-all duration-500">
+<div class="w-16 h-16 bg-secondary-container rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-secondary-container text-4xl" data-icon="map">map</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Outstation Trips <span class="block text-lg font-normal">வெளியூர் பயணங்கள்</span></h3>
+<p class="text-on-surface-variant leading-relaxed">One-way or Round trips across Tamil Nadu with experienced professional drivers.<br/><span class="text-sm">தமிழகம் முழுவதும் ஒரு வழி அல்லது முழு பயணம். அனுபவமான டிரைவர்கள்.</span></p>
+<div class="mt-8 flex items-center text-primary font-bold">
+                            Learn more <span class="material-symbols-outlined ml-2" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Premium Car Booking Template Section -->
+<section class="py-24 px-6 bg-surface-container-lowest" id="premium">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<span class="text-primary font-bold tracking-[0.2em] uppercase text-sm block mb-2">Executive Experience <span class="normal-case font-normal tracking-normal">எக்ஸிகியூட்டிவ் அனுபவம்</span></span>
+<h2 class="text-4xl md:text-5xl font-black text-on-surface">Premium Car Selection<br/><span class="text-2xl md:text-3xl">பிரீமியம் கார் தேர்வு</span></h2>
+<div class="w-24 h-1.5 bg-primary mx-auto mt-6 rounded-full"></div>
+</div>
+<div class="grid gap-10 md:grid-cols-2 max-w-4xl mx-auto">
+<!-- Toyota Innova Crysta (White) -->
+<div class="bg-surface rounded-[2.5rem] overflow-hidden shadow-lg border border-outline-variant/30 hover:shadow-2xl transition-all duration-500 group">
+<div class="relative h-64 overflow-hidden">
+<img alt="Toyota Innova Crysta White" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="Innova.jpeg"/>
+<div class="absolute top-4 right-4 bg-primary text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Most Popular</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-2xl font-extrabold text-on-surface">Toyota Innova Crysta</h3>
+<p class="text-primary font-semibold text-sm">Premium White MPV</p>
+</div>
+</div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 text-on-surface-variant text-sm font-medium">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="check_circle">check_circle</span>
+                            7-Seater Luxury Cabin
+                        </li>
+<li class="flex items-center gap-3 text-on-surface-variant text-sm font-medium">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="check_circle">check_circle</span>
+                            Advanced Air Purification
+                        </li>
+<li class="flex items-center gap-3 text-on-surface-variant text-sm font-medium">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="check_circle">check_circle</span>
+                            Complimentary Mineral Water
+                        </li>
+</ul>
+<div class="flex items-center justify-between pt-6 border-t border-outline-variant/30">
+<div>
+<span class="text-xs text-on-surface-variant font-bold uppercase block">Starting from</span>
+<span class="text-2xl font-black text-on-surface">₹22/KM</span>
+</div>
+<button class="kinetic-gradient text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:brightness-110 transition-all">Book Now</button>
+</div>
+</div>
+<!-- Maruti Swift Dzire (White) -->
+<div class="bg-surface rounded-[2.5rem] overflow-hidden shadow-lg border border-outline-variant/30 hover:shadow-2xl transition-all duration-500 group">
+<div class="relative h-64 overflow-hidden">
+<img alt="Maruti Swift Dzire White" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="Dzire.avif"/>
+<div class="absolute top-4 right-4 bg-on-surface text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Economy</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-2xl font-extrabold text-on-surface">Maruti Swift Dzire</h3>
+<p class="text-primary font-semibold text-sm">White Sedan</p>
+</div>
+</div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 text-on-surface-variant text-sm font-medium">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="check_circle">check_circle</span>
+                            5-Seater Compact Cabin
+                        </li>
+<li class="flex items-center gap-3 text-on-surface-variant text-sm font-medium">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="check_circle">check_circle</span>
+                            AC & Power Steering
+                        </li>
+<li class="flex items-center gap-3 text-on-surface-variant text-sm font-medium">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="check_circle">check_circle</span>
+                            Fuel Efficient
+                        </li>
+</ul>
+<div class="flex items-center justify-between pt-6 border-t border-outline-variant/30">
+<div>
+<span class="text-xs text-on-surface-variant font-bold uppercase block">Starting from</span>
+<span class="text-2xl font-black text-on-surface">₹12/KM</span>
+</div>
+<button class="kinetic-gradient text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:brightness-110 transition-all">Book Now</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Popular Routes Section -->
+<section class="py-24 px-6 bg-surface-container-low overflow-hidden" id="routes">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+<div>
+<span class="text-primary font-bold tracking-[0.2em] uppercase text-sm block mb-2">Travel Hub <span class="normal-case font-normal tracking-normal">பயண மையம்</span></span>
+<h2 class="text-4xl md:text-5xl font-black text-on-surface">Popular Direct Routes<br/><span class="text-2xl md:text-3xl">பிரபலமான பாதைகள்</span></h2>
+</div>
+<p class="text-on-surface-variant max-w-xs">Fixed competitive rates for our most requested destinations from Namakkal.<br/><span class="text-sm">நாமக்கல் முதல் அதிகம் கோரப்பட்ட இடங்களுக்கு நிலையான விகிதம்.</span></p>
+</div>
+<div class="flex overflow-x-auto pb-8 gap-6 snap-x no-scrollbar">
+<!-- Route Card 1 -->
+<div class="flex-none w-80 bg-surface-container-lowest p-8 rounded-3xl snap-center shadow-sm">
+<div class="flex justify-between items-start mb-6">
+<div class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-lg text-xs font-black uppercase">City Link</div>
+<span class="text-2xl font-black text-on-surface">₹1,200*</span>
+</div>
+<h4 class="text-xl font-bold mb-2">Namakkal to Salem<br/><span class="text-base font-normal">நாமக்கல் - சேலம்</span></h4>
+<div class="flex items-center text-sm text-on-surface-variant mb-6 gap-4">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="distance">distance</span> 55 KM</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span> 1.2 Hrs</span>
+</div>
+<button class="w-full py-3 border-2 border-primary text-primary font-bold rounded-xl hover:bg-primary hover:text-white transition-all">Book Now</button>
+</div>
+<!-- Route Card 2 -->
+<div class="flex-none w-80 bg-surface-container-lowest p-8 rounded-3xl snap-center shadow-sm">
+<div class="flex justify-between items-start mb-6">
+<div class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-lg text-xs font-black uppercase">City Link</div>
+<span class="text-2xl font-black text-on-surface">₹1,450*</span>
+</div>
+<h4 class="text-xl font-bold mb-2">Namakkal to Erode<br/><span class="text-base font-normal">நாமக்கல் - ஈரோடு</span></h4>
+<div class="flex items-center text-sm text-on-surface-variant mb-6 gap-4">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="distance">distance</span> 65 KM</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span> 1.5 Hrs</span>
+</div>
+<button class="w-full py-3 border-2 border-primary text-primary font-bold rounded-xl hover:bg-primary hover:text-white transition-all">Book Now</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Section -->
+<section class="py-24 px-6 bg-surface" id="pricing">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-4xl md:text-5xl font-black mb-4">Transparent Pricing<br/><span class="text-2xl md:text-3xl">தெளிவான விலை</span></h2>
+<p class="text-on-surface-variant">No hidden charges. Clear as daylight.<br/><span class="text-sm">மறைக்கப்பட்ட கட்டணமில்லை. முழு தெளிவு.</span></p>
+</div>
+<div class="overflow-hidden bg-surface-container-lowest rounded-[2rem] shadow-xl">
+<table class="w-full border-collapse text-left">
+<thead>
+<tr class="bg-on-surface text-white">
+<th class="px-8 py-6 font-bold uppercase tracking-wider">Vehicle Type<br/><span class="text-xs font-normal normal-case">வாகன வகை</span></th>
+<th class="px-8 py-6 font-bold uppercase tracking-wider">Base Price<br/><span class="text-xs font-normal normal-case">அடிப்படை விலை</span></th>
+<th class="px-8 py-6 font-bold uppercase tracking-wider">Extra KM<br/><span class="text-xs font-normal normal-case">கூடுதல் கிமீ</span></th>
+<th class="px-8 py-6 font-bold uppercase tracking-wider">Driver Allowance<br/><span class="text-xs font-normal normal-case">டிரைவர் அலவன்ஸ்</span></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-8 py-8 font-bold text-lg">Maruti Swift Dzire</td>
+<td class="px-8 py-8">₹12/KM</td>
+<td class="px-8 py-8">₹12</td>
+<td class="px-8 py-8">₹300/Day</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-8 py-8 font-bold text-lg">Toyota Innova Crysta</td>
+<td class="px-8 py-8">₹18/KM</td>
+<td class="px-8 py-8">₹18</td>
+<td class="px-8 py-8">₹500/Day</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-8 text-center text-on-surface-variant text-sm italic">
+                    * Toll, Parking, and State Permit charges are extra as per actuals. Minimum KM applies.<br/>
+                    <span class="text-xs">* டோல், பார்க்கிங் மற்றும் மாநில அனுமதி கூடுதல். குறைந்தபட்ச கிமீ பொருந்தும்.</span>
+                </div>
+</div>
+</section>
+<!-- Why Choose Us -->
+<section class="py-24 px-6 bg-on-surface text-white rounded-[4rem] mx-6 mb-24">
+<div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+<div class="relative">
+<img alt="Kurinji Taxi Fleet" class="rounded-[3rem] shadow-2xl scale-105" src="Innova.jpeg"/>
+<div class="absolute -bottom-8 -right-8 bg-primary-container p-8 rounded-3xl text-on-primary-container">
+<div class="text-4xl font-black">15+</div>
+<div class="font-bold uppercase tracking-widest text-xs">Years of Trust<br/><span class="normal-case text-[10px]">ஆண்டுகள் நம்பகம்</span></div>
+</div>
+</div>
+<div>
+<h2 class="text-4xl md:text-5xl font-black mb-12">Why Namakkal Trusts <span class="text-primary-container">Kurinji Taxi</span><br/><span class="text-2xl md:text-3xl">ஏன் நாமக்கல் மக்கள் குறிஞ்சி டாக்ஸியை நம்புகின்றனர்</span></h2>
+<div class="space-y-8">
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-primary-container text-3xl" data-icon="verified_user">verified_user</span>
+<div>
+<h4 class="text-xl font-bold mb-2">Professional Drivers<br/><span class="text-base font-normal">தொழில்முறை ஓட்டுநர்கள்</span></h4>
+<p class="text-white/60">Verified, background-checked, and polite chauffeurs for your safety.<br/><span class="text-sm">உங்கள் பாதுகாப்பிற்காக சரிபார்க்கப்பட்ட, பின்னணி ஆய்வு செய்யப்பட்ட மற்றும் மரியாதையுடன் நடக்கும் ஓட்டுநர்கள்.</span></p>
+</div>
+</div>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-primary-container text-3xl" data-icon="nest_eco_leaf">nest_eco_leaf</span>
+<div>
+<h4 class="text-xl font-bold mb-2">Clean Vehicles<br/><span class="text-base font-normal">தூய்மையான வாகனங்கள்</span></h4>
+<p class="text-white/60">Regularly sanitized and well-maintained fleet for a fresh journey.<br/><span class="text-sm">தொடர்ந்து சுத்தம் செய்யப்பட்டு நன்றாக பராமரிக்கப்பட்ட வாகனங்கள், உங்கள் பயணத்தை சுகமாகவும் பாதுகாப்பாகவும் மாற்றுகின்றன.</span></p>
+</div>
+</div>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-primary-container text-3xl" data-icon="alarm_on">alarm_on</span>
+<div>
+<h4 class="text-xl font-bold mb-2">On-time Pickup<br/><span class="text-base font-normal">நேரத்திற்கு சரியான வருகை</span></h4>
+<p class="text-white/60">Our sophisticated dispatch system ensures we reach you before time.<br/><span class="text-sm">எங்களின் மேம்பட்ட சேவை முறையால், நாங்கள் உங்களை நேரத்திற்கு முன்பே வந்து சேருகிறோம்.</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 px-6 text-center">
+<div class="max-w-4xl mx-auto bg-surface-container-highest p-16 rounded-[4rem] relative overflow-hidden">
+<div class="absolute inset-0 kinetic-gradient opacity-10"></div>
+<div class="relative z-10">
+<h2 class="text-4xl md:text-5xl font-black mb-8">Ready to Start Your Journey?<br/><span class="text-2xl md:text-3xl">உங்கள் பயணத்தைத் தொடங்க தயாரா?</span></h2>
+<p class="text-xl mb-12 text-on-surface-variant">Book your Kurinji Taxi in just one click or call.<br/><span class="text-base">ஒரு கிளிக்கோ அல்லது அழைப்பில் உங்கள் குறிஞ்சி டாக்ஸியை முன்பதிவு செய்யுங்கள்.</span></p>
+<div class="flex flex-col md:flex-row gap-6 justify-center">
+<a href="tel:+919345691983" class="kinetic-gradient text-white px-12 py-5 rounded-2xl font-black text-xl flex items-center justify-center gap-4 shadow-xl hover:scale-105 transition-all">
+<span class="material-symbols-outlined text-3xl" data-icon="phone_enabled" style="font-variation-settings: 'FILL' 1;">phone_enabled</span>
+                            Call Now
+                        </a>
+<a href="https://wa.me/919345691983" class="bg-[#25D366] text-white px-12 py-5 rounded-2xl font-black text-xl flex items-center justify-center gap-4 shadow-xl hover:scale-105 transition-all">
+<span class="material-symbols-outlined text-3xl" data-icon="chat">chat</span>
+                            WhatsApp Us
+                        </a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-gray-50 dark:bg-zinc-950 w-full border-t-0" id="contact">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 px-8 py-16 max-w-7xl mx-auto">
+<div class="space-y-6">
+<div class="text-2xl font-black text-black dark:text-white">குறிஞ்சி டாக்ஸி</div>
+<p class="text-sm text-gray-500 max-w-xs leading-relaxed">Namakkal's leading taxi service since 2008. Dedicated to providing safe, comfortable and timely travel across Tamil Nadu.<br/><span class="text-xs">2008 முதல் நாமக்கல் முன்னணி டாக்ஸி சேவை. தமிழகம் முழுவதும் பாதுகாப்பான மற்றும் சமமான பயணம்.</span></p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="facebook">social_leaderboard</span>
+<span class="material-symbols-outlined text-primary" data-icon="share">share</span>
+</div>
+</div>
+<div class="space-y-6">
+<h4 class="text-lg font-bold">Quick Links<br/><span class="text-sm font-normal">விரைவு இணைப்புகள்</span></h4>
+<ul class="space-y-3">
+<li><a class="text-gray-400 hover:text-black transition-colors" href="#">Home</a></li>
+<li><a class="text-gray-400 hover:text-black transition-colors" href="#services">Services</a></li>
+<li><a class="text-gray-400 hover:text-black transition-colors" href="#premium">Premium Fleet</a></li>
+<li><a class="text-gray-400 hover:text-black transition-colors" href="#routes">Popular Routes</a></li>
+<li><a class="text-gray-400 hover:text-black transition-colors" href="#pricing">Fare Chart</a></li>
+<li><a class="text-gray-400 hover:text-black transition-colors" href="#contact">Contact</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="text-lg font-bold">Find Us<br/><span class="text-sm font-normal">எங்களை காண்க</span></h4>
+<div class="rounded-2xl overflow-hidden shadow-lg border-2 border-surface-container-high">
+<img alt="Map of Namakkal" class="w-full h-40 object-cover" data-alt="Map showing Namakkal city center and surrounding districts" data-location="Namakkal, Tamil Nadu" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGIcUJ7rJLIk2Hn-AE7VbvDFipEtVSRjvJcNd2X0xIcaMvIWmzZ4Jf9VTZQHerSwWJFVhYJjKBAbkOFp3BWHdzPPjaXEn62dkrJsUysS2wu843pL2t4uqf2SnwQTvvyrl--MSW2W9MOsZcELLVf9s0OpQDGMK1gPbqZ91YEQystxjppzXujBlsJl6_IhokvWSlBpxxgA2ZCjg9Cr3QrswwmEqS5QcksWrHfSFBWoM9tE1U0OhVmCyMGhSRdJtQXHRpF8NbFyMJz0Io"/>
+</div>
+<div class="flex gap-3 text-sm text-gray-500">
+<span class="material-symbols-outlined text-primary shrink-0" data-icon="location_on">location_on</span>
+<span>12/A, Main Road, Near Bus Stand, Namakkal - 637001</span>
+</div>
+</div>
+</div>
+<div class="border-t border-gray-200 dark:border-zinc-800 py-8 px-8 text-center">
+<p class="text-sm text-gray-500 font-['Inter']">© 2024 Kurinji Taxi Namakkal. Premium Editorial Travel.</p>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full rounded-t-3xl z-50 bg-white/80 backdrop-blur-lg shadow-[0_-12px_32px_rgba(120,89,0,0.08)] flex justify-around items-center px-4 pb-safe">
+<a href="tel:+919345691983" class="flex-1 flex flex-col items-center py-4 bg-gradient-to-br from-[#785900] to-[#FFC107] text-white rounded-2xl mx-2 my-2 animate-pulse-subtle">
+<span class="material-symbols-outlined" data-icon="call" style="font-variation-settings: 'FILL' 1;">call</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">Call Now</span>
+</a>
+<a href="https://wa.me/919345691983" class="flex-1 flex flex-col items-center py-4 text-black bg-gray-100 rounded-2xl mx-2 my-2">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">WhatsApp</span>
+</a>
+</nav>
+<!-- Floating WhatsApp FAB (Desktop) -->
+<a class="hidden md:flex fixed bottom-10 right-10 w-16 h-16 bg-[#25D366] text-white rounded-full items-center justify-center shadow-2xl z-50 hover:scale-110 transition-transform" href="https://wa.me/919345691983">
+<span class="material-symbols-outlined text-3xl" data-icon="chat" style="font-variation-settings: 'FILL' 1;">chat</span>
+</a>
+</body></html>
